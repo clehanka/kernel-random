@@ -53,16 +53,16 @@ static int rdseed_rng_read(struct hwrng *rng, void *data, size_t max, bool wait)
 }
 
 static struct hwrng intel_rng = {
-	.name		= "rdseed",
-	.init		= NULL,
-	.cleanup	= NULL,
-	.read	    = rdseed_rng_read,
+    .name       = "rdseed",
+    .init       = NULL,
+    .cleanup    = NULL,
+    .read       = rdseed_rng_read,
     .quality    = 128 // entropy per mill; conservative guess
 };
 
 static int __init mod_init(void)
 {
-	int err = -ENODEV;
+    int err = -ENODEV;
     if (!arch_has_random_seed()) {
         printk(KERN_INFO "No RDSEED instruction supported. Trying to fall back on RDRAND\n");
         intel_rng.read = rdrand_rng_read;
@@ -73,18 +73,18 @@ static int __init mod_init(void)
         goto out;
     }
 
-	err = hwrng_register(&intel_rng);
-	if (err) {
-		printk(KERN_ERR "Could not register rdseed-rng (%d)\n",
-		       err);
-	}
+    err = hwrng_register(&intel_rng);
+    if (err) {
+        printk(KERN_ERR "Could not register rdseed-rng (%d)\n",
+               err);
+    }
 out:
     return err;
 }
 
 static void __exit mod_exit(void)
 {
-	hwrng_unregister(&intel_rng);
+    hwrng_unregister(&intel_rng);
 }
 
 module_init(mod_init);
