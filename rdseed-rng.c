@@ -1,3 +1,13 @@
+/*
+ * RNG driver for Intel RDRAND and RDSEED Capable CPUs
+ *
+ * Copyright 2016 (c) Marcus Gelderie
+ *
+ * This file is licensed under  the terms of the GNU General Public
+ * License version 2. This program is licensed "as is" without any
+ * warranty of any kind, whether express or implied.
+ */
+
 #include <asm/archrandom.h>
 #include <linux/hw_random.h>
 #include <linux/kernel.h>
